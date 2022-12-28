@@ -1,10 +1,10 @@
 class CountdownManager {
-    init() {
-        this.newCountdownButton = document.getElementById('new-countdown');
-        this.eventTitle = document.getElementById('event-title');
-        this.datePicker = document.getElementById('date-picker');
+  init() {
+    this.newCountdownButton = document.getElementById("new-countdown");
+    this.eventTitle = document.getElementById("event-title");
+    this.datePicker = document.getElementById("date-picker");
 
-        this.countdownCounter = 0;
+    this.countdownCounter = 0;
 
         this.countdownsContainer = document.querySelector('.countdowns-container');
         this.countdowns = [];
@@ -46,31 +46,30 @@ class CountdownManager {
         document.cookie = cookie;
     }
 
-    disableTickerPastDate = () => {
-        let currentDate = new Date().toISOString();
-        currentDate = currentDate.slice(0, currentDate.lastIndexOf(':'));
-        this.datePicker.setAttribute('min', currentDate);
-        this.datePicker.setAttribute('value', currentDate);
-    }
+  disableTickerPastDate = () => {
+    let currentDate = new Date().toISOString();
+    currentDate = currentDate.slice(0, currentDate.lastIndexOf(":"));
+    this.datePicker.setAttribute("min", currentDate);
+    this.datePicker.setAttribute("value", currentDate);
+  };
 
-    addListeners = () => {
-        this.newCountdownButton.addEventListener('click', () => {
-            const dateStr = this.datePicker.value;
-            const eventTitle = this.eventTitle.value;
+  addListeners = () => {
+    this.newCountdownButton.addEventListener("click", () => {
+      const dateStr = this.datePicker.value;
+      const eventTitle = this.eventTitle.value;
 
-            if (dateStr === "" || eventTitle === "") return;
-            this.addNewCountdown({
-                title: eventTitle,
-                date: new Date(dateStr),
-                container: this.countdownsContainer
-            })
-        });
-    }
+      if (dateStr === "" || eventTitle === "") return;
+      this.addNewCountdown({
+        title: eventTitle,
+        date: new Date(dateStr),
+        container: this.countdownsContainer,
+      });
+    });
+  };
 
-    addNewCountdown = ({title, date, container}) => {
-
-        const countdownId = 'countdown' + this.countdownCounter++;
-        const code = `<div class="countdown" id="${countdownId}">
+  addNewCountdown = ({ title, date, container }) => {
+    const countdownId = "countdown" + this.countdownCounter++;
+    const code = `<div class="countdown" id="${countdownId}">
                         <h2 class="countdown-title">${title}</h2>
                         <div class="countdown-body">
                             <ul class="timer">
@@ -87,65 +86,64 @@ class CountdownManager {
                     </div>
         `;
 
-        let element = document.createElement('div');
-        element.innerHTML = code;
-        element = element.firstChild;
+    let element = document.createElement("div");
+    element.innerHTML = code;
+    element = element.firstChild;
 
-        container.appendChild(element);
+    container.appendChild(element);
 
+    const countdown = new Countdown({
+      title: title,
+      date: date,
+      id: countdownId,
+    });
 
-        const countdown = new Countdown({
-            title: title,
-            date: date,
-            id: countdownId
-        });
-
-        countdown.addDeleteListener(() => {
-            this.removeCountdownFromHtml(countdown);
-        });
+    countdown.addDeleteListener(() => {
+      this.removeCountdownFromHtml(countdown);
+    });
 
         this.countdowns.push(countdown);
         this.saveCountdownsInCookies();
 
     }
 
-    startCountdowns = () => {
-        this.intervalId = setInterval(this.checkcountdowns, 1000);
-    }
+  startCountdowns = () => {
+    this.intervalId = setInterval(this.checkcountdowns, 1000);
+  };
 
-    checkcountdowns = () => {
-        const now = new Date().getTime();
-        const second = 1000;
-        const minute = second * 60;
-        const hour = minute * 60;
-        const day = hour * 24;
+  checkcountdowns = () => {
+    const now = new Date().getTime();
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
 
-        this.countdowns.forEach((countdown) => {
-            const distance = countdown.timestamp - now;
-            const days = Math.floor(distance / day);
-            const hours = Math.floor((distance % day) / hour);
-            const minutes = Math.floor((distance % hour) / minute);
-            const seconds = Math.floor((distance % minute) / second);
+    this.countdowns.forEach((countdown) => {
+      const distance = countdown.timestamp - now;
+      const days = Math.floor(distance / day);
+      const hours = Math.floor((distance % day) / hour);
+      const minutes = Math.floor((distance % hour) / minute);
+      const seconds = Math.floor((distance % minute) / second);
 
-            if (distance > 0) {
-                countdown.updateCountdownHtml({
-                    days: days,
-                    hours: hours,
-                    minutes: minutes,
-                    seconds: seconds,
-                    distance: distance
-                });
-            } else {
-                countdown.countdownFinished();
-            }
+      if (distance > 0) {
+        countdown.updateCountdownHtml({
+          days: days,
+          hours: hours,
+          minutes: minutes,
+          seconds: seconds,
+          distance: distance,
         });
-    }
+      } else {
+        countdown.countdownFinished();
+      }
+    });
+  };
 
-    removeCountdownFromHtml = (countdown) => {
-        const countdownId = countdown.getId();
-        const countdownContainer = countdown.getContainer();
+  removeCountdownFromHtml = (countdown) => {
+    const countdownId = countdown.getId();
+    const countdownContainer = countdown.getContainer();
 
-        this.countdownsContainer.removeChild(countdownContainer);
+    this.countdownsContainer.removeChild(countdownContainer);
 
         this.countdowns = this.countdowns.filter((countdown) => countdown.id != countdownId);
 

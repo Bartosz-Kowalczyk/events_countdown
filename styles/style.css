@@ -1,244 +1,237 @@
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 
 :root {
-    --font-family: 'Varela Round', sans-serif;
-    --background-color: #457B9D;
-    --font-color: #ffffff;
-    --border-radius: 5px;
-    --app-backgroud-color: #0c2b44a6;
-    --countdown-title-backgroud: #E63946;
-    --countdown-title-font-color: #F1FAEE;
-    --countdown-backgroud: #f8fcf7;
-    --input-background: #F1FAEE;
-    --input-border-color: #1D3557;
-    --text-shadow: 0px 0px 9px rgba(0,0,0,0.37);
-    --button-background: #e63947d7;
+  --font-family: "Varela Round", sans-serif;
+  --background-color: #457b9d;
+  --font-color: #ffffff;
+  --border-radius: 5px;
+  --app-backgroud-color: #0c2b44a6;
+  --countdown-title-backgroud: #e63946;
+  --countdown-title-font-color: #f1faee;
+  --countdown-backgroud: #f8fcf7;
+  --input-background: #f1faee;
+  --input-border-color: #1d3557;
+  --text-shadow: 0px 0px 9px rgba(0, 0, 0, 0.37);
+  --button-background: #e63947d7;
 }
 
-
 * {
-    box-sizing: border-box;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
+  box-sizing: border-box;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
 }
 
 body {
-    align-items: center;
-    background-color: var(--background-color);
-    background-image: url(/img/bg.jpg);
-    background-repeat: no-repeat;
-    background-size:cover;
-    color: var(--font-color);
-    display: flex;
-    font-family: var(--font-family);
-    justify-content: center;
-    min-height: 100vh;
+  align-items: center;
+  background-color: var(--background-color);
+  background-image: url(/img/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: var(--font-color);
+  display: flex;
+  font-family: var(--font-family);
+  justify-content: center;
+  min-height: 100vh;
 }
 
 ul {
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: 1fr 2fr 2fr 2fr;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 2fr;
 }
 
 ul li {
-
-    flex-direction: row;
-    padding: 5px;
-    font-size: 1rem;
+  flex-direction: row;
+  padding: 5px;
+  font-size: 1rem;
 }
 
 ul li span {
-    display: block;
-    text-align: center;
+  display: block;
+  text-align: center;
 }
 
 input:focus {
-    box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.75);
+  box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.75);
 }
 
 button.countdown-delete {
-    background: none;
-    border-radius: var(--border-radius);
-    border: none;
-    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
-    cursor: pointer;
-    display: block;
-    height: 20px;
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    transition: all .2s ease;
+  background: none;
+  border-radius: var(--border-radius);
+  border: none;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+  display: block;
+  height: 20px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  transition: all 0.2s ease;
 }
 
 button.countdown-delete:hover {
-    transform: scale(1.3);
+  transform: scale(1.3);
 }
 
 button.countdown-delete img {
-    height: 20px;
-    width: auto;
-    background: none;
+  height: 20px;
+  width: auto;
+  background: none;
 }
 
 .container {
-    align-items: center;
-    background-color: var(--app-backgroud-color);
-    border-radius: var(--border-radius);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-    visibility: hidden;
-    width: 400px;
+  align-items: center;
+  background-color: var(--app-backgroud-color);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  visibility: hidden;
+  width: 400px;
 }
 
 .container.active {
   visibility: visible;
 }
 
-
 .countdowns-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 90%;
 }
 
 .countdown {
-    background-color: var(--countdown-backgroud);
-    border-radius: var(--border-radius);
-    color: black;
-    margin: 5px 0 20px;
-    padding: 5px;
-    position: relative;
+  background-color: var(--countdown-backgroud);
+  border-radius: var(--border-radius);
+  color: black;
+  margin: 5px 0 20px;
+  padding: 5px;
+  position: relative;
 }
 
 .countdown-title {
-    background-color: var(--countdown-title-backgroud);
-    border-radius: var(--border-radius);
-    color: var(--countdown-title-font-color);
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
+  background-color: var(--countdown-title-backgroud);
+  border-radius: var(--border-radius);
+  color: var(--countdown-title-font-color);
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .countdown-body {
-    display: flex;
-    justify-content: center;
-    border-bottom: 1px dotted black;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px dotted black;
 }
 
 .timer.hide {
-    display: none;
+  display: none;
 }
 
 .countdown-finished-info {
-    display: none;
-    font-weight: bold;
-    padding: 15px;
+  display: none;
+  font-weight: bold;
+  padding: 15px;
 }
 
 .countdown-finished-info.show {
-    display: block;
+  display: block;
 }
 
 .countdown-finished {
-    background-color: rgb(8, 0, 0);
-    color: white;
+  background-color: rgb(8, 0, 0);
+  color: white;
 }
 
-.input-container  {
-    text-shadow: var(--text-shadow);
-    background-color: rgba(0, 0, 0, 0.1);
-    border-radius: var(--border-radius);
+.input-container {
+  text-shadow: var(--text-shadow);
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: var(--border-radius);
 }
 
 .input-container h2 {
-    padding: 10px;
-
+  padding: 10px;
 }
 
 .input-container label {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .input-container input {
-    background-color: var(--input-background);
-    border-radius: var(--border-radius);
-    border: 1px solid var(--input-border-color);
-    font-family: var(--font-family);
-    margin: 5px auto 10px;
-    padding: 10px;
-    width: 90%;
+  background-color: var(--input-background);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--input-border-color);
+  font-family: var(--font-family);
+  margin: 5px auto 10px;
+  padding: 10px;
+  width: 90%;
 }
 
 .input-container #new-countdown {
-    background-color: var(--button-background);
-    border-radius: var(--border-radius);
-    border: none;
-    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
-    color: #F1FAEE;
-    cursor: pointer;
-    font-size: 1.2rem;
-    font-weight: bold;
-    height: 40px;
-    margin: 15px 0;
-    transition: all .2s ease;
-    width: 90%;
+  background-color: var(--button-background);
+  border-radius: var(--border-radius);
+  border: none;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+  color: #f1faee;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  height: 40px;
+  margin: 15px 0;
+  transition: all 0.2s ease;
+  width: 90%;
 }
 
 .input-container #new-countdown:hover {
-    box-shadow: 0px 0px 4px 0px rgba(255, 255, 255, 0.75);
-    transform: scale(1.05);
+  box-shadow: 0px 0px 4px 0px rgba(255, 255, 255, 0.75);
+  transform: scale(1.05);
 }
 
 .loader {
-    align-items: center;
-    background-color: var(--background-color);
-    bottom: 0;
-    display: none;
-    height: 100%;
-    justify-content: center;
-    position: fixed;
-    width: 100%;
-    z-index: 10;
+  align-items: center;
+  background-color: var(--background-color);
+  bottom: 0;
+  display: none;
+  height: 100%;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+
+.loader.active {
+  display: flex;
+}
+
+.circle {
+  animation: spin 2s linear infinite;
+  border: 15px solid #41474e;
+  border-radius: 50%;
+  border-top: 15px solid var(--font-color);
+  height: 100px;
+  width: 100px;
+  display: none;
+}
+
+.circle.active {
+  display: block;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-
-  .loader.active {
-    display: flex;
+  100% {
+    transform: rotate(360deg);
   }
-
-  .circle {
-    animation: spin 2s linear infinite;
-    border: 15px solid #41474e;
-    border-radius: 50%;
-    border-top: 15px solid var(--font-color);
-    height: 100px;
-    width: 100px;
-    display: none;
-  }
-
-  .circle.active {
-    display: block;
-  }
-
-
-
-  @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-  }
+}
