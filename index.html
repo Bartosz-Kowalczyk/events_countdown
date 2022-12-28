@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Events countdown</title>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="countdowns-container">
+        <div class="countdown" id="countdownId0">
+          <h2 class="countdown-title">tytuł</h2>
+          <div class="countdown-body">
+            <ul class="timer">
+              <li><span class="days">1</span>dni</li>
+              <li><span class="hours">1</span>godzin</li>
+              <li><span class="minutes">1</span>minut</li>
+              <li><span class="seconds">1</span>sekund</li>
+            </ul>
+            <div class="countdown-finished-info">Odliczanie zakończone!</div>
+          </div>
+          <button class="countdown-delete">
+            <img src="./img/close.png" alt="przycisk usuwający odliczanie" />
+          </button>
+        </div>
+      </div>
+      <div class="input-container" id="input-container">
+        <h2>Dodaj nowe wydarzenie</h2>
+        <form action="#" class="form" id="countdown-form">
+          <label for="event-title">Tytuł wydarzenia:</label>
+          <input type="text" id="event-title" />
+          <label for="date-picker">Data wydarzenia:</label>
+          <input type="datetime-local" id="date-picker" />
+          <button id="new-countdown">Dodaj</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="./scripts/countdown.js"></script>
+    <script src="./scripts/app.js"></script>
+  </body>
+</html>
