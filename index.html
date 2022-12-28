@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
   </head>
   <body>
-    <div class="container">
+    <div class="container" id="container">
       <div class="countdowns-container"></div>
       <div class="input-container" id="input-container">
         <h2>Dodaj nowe wydarzenie</h2>
@@ -22,8 +22,12 @@
         </form>
       </div>
     </div>
+    <div class="loader active" id="loader">
+      <span class="circle active" id="circle"></span>
+    </div>
 
     <script src="./scripts/countdown.js"></script>
     <script src="./scripts/app.js"></script>
+    <script src="./scripts/loader.js"></script>
   </body>
 </html>
