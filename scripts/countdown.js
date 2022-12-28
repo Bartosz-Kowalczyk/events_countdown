@@ -1,4 +1,5 @@
 class Countdown {
+
     constructor({title, date, id}) {
         this.title = title;
         this.date = date;
