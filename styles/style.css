@@ -107,7 +107,7 @@ button.countdown-delete img {
   text-align: center;
   width: 90%;
   max-height: 60vh;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .countdown {
