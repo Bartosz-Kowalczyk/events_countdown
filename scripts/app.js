@@ -6,13 +6,45 @@ class CountdownManager {
 
     this.countdownCounter = 0;
 
-    this.countdownsContainer = document.querySelector(".countdowns-container");
-    this.countdowns = [];
+        this.countdownsContainer = document.querySelector('.countdowns-container');
+        this.countdowns = [];
+
+        this.savedCountdowns = document.cookie.slice((document.cookie.indexOf('=') + 1));;
+
+        this.importCountdownsFromCookies();
 
     this.disableTickerPastDate();
     this.addListeners();
     this.startCountdowns();
   }
+
+    importCountdownsFromCookies = () => {
+
+        if (this.savedCountdowns !== "") {
+
+            let lastCountdownCounter = this.countdownCounter;
+
+            let countdownsObj = JSON.parse(this.savedCountdowns);
+
+            for (const savedCountdown of countdownsObj) {
+                this.addNewCountdown({
+                    title: savedCountdown.title,
+                    date: new Date(savedCountdown.date),
+                    container: this.countdownsContainer
+                });
+                lastCountdownCounter = parseInt(savedCountdown.id.slice((savedCountdown.id.lastIndexOf('n') + 1)));
+                if (lastCountdownCounter > this.countdownCounter) this.countdownCounter = lastCountdownCounter;
+
+                delete countdownsObj.savedCountdown;
+            }
+            this.checkcountdowns();
+        }
+    }
+
+    saveCountdownsInCookies = () => {
+        let cookie = 'countdowns=' + JSON.stringify(this.countdowns);
+        document.cookie = cookie;
+    }
 
   disableTickerPastDate = () => {
     let currentDate = new Date().toISOString();
@@ -70,8 +102,10 @@ class CountdownManager {
       this.removeCountdownFromHtml(countdown);
     });
 
-    this.countdowns.push(countdown);
-  };
+        this.countdowns.push(countdown);
+        this.saveCountdownsInCookies();
+
+    }
 
   startCountdowns = () => {
     this.intervalId = setInterval(this.checkcountdowns, 1000);
@@ -111,11 +145,13 @@ class CountdownManager {
 
     this.countdownsContainer.removeChild(countdownContainer);
 
-    this.countdowns = this.countdowns.filter(
-      (countdown) => countdown.id != countdownId
-    );
-    countdown.destroyCountdown();
-  };
+        this.countdowns = this.countdowns.filter((countdown) => countdown.id != countdownId);
+
+        this.saveCountdownsInCookies();
+
+        countdown.destroyCountdown();
+    }
+
 }
 
 const countdownManager = new CountdownManager();
