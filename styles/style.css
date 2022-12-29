@@ -101,11 +101,13 @@ button.countdown-delete img {
 }
 
 .countdowns-container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   justify-content: center;
   text-align: center;
   width: 90%;
+  max-height: 60vh;
+  overflow: scroll;
 }
 
 .countdown {
