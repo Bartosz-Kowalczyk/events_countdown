@@ -3,6 +3,9 @@
 ## About
 
 This is a simple app to countdown the time before the event.
+Labels, messages and all user data are described in polish.
+
+Notice: the app uses cookies to save countdowns added by users.
 
 Example: https://bartkowalczyk.com/events_countdown
 
