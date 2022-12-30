@@ -72,9 +72,10 @@ class CountdownManager {
 
   addNewCountdown = ({ title, date, container }) => {
     const countdownId = "countdown" + this.countdownCounter++;
+    const countdownDeleteId = 'del_' + countdownId;
     const code = `<div class="countdown" id="${countdownId}">
                         <h2 class="countdown-title">${title}</h2>
-                        <div class="countdown-body">
+                        <div class="countdown-body active">
                             <ul class="timer">
                                 <li><span class="days"></span>dni</li>
                                 <li><span class="hours"></span>godzin</li>
@@ -82,6 +83,13 @@ class CountdownManager {
                                 <li><span class="seconds"></span>sekund</li>
                             </ul>
                             <div class="countdown-finished-info">Odliczanie zakończone!</div>
+                        </div>
+                        <div id="${countdownDeleteId}"class="countdown-delete-confirmation">
+                          <p>Czy na pewno chcesz usunąć to wydarzenie?</p>
+                          <div class="delete-confirmation-buttons">
+                            <button class="delete-confirm">Tak</button>
+                            <button class="delete-cancell">Nie</button>
+                          </div>
                         </div>
                         <button class="countdown-delete">
                         <img src="./img/close.png" alt="przycisk usuwający odliczanie" />
@@ -101,7 +109,7 @@ class CountdownManager {
       id: countdownId,
     });
 
-    countdown.addDeleteListener(() => {
+    countdown.addButtonsListeners(() => {
       this.removeCountdownFromHtml(countdown);
     });
 
